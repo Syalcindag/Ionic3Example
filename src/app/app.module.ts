@@ -9,6 +9,8 @@ import { ListPage } from '../pages/list/list';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { VeritabaniProvider } from '../providers/veritabani/veritabani';
+import { Http, HttpModule} from '@angular/http';
+import { HttpClientModule, HttpClient } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -19,6 +21,8 @@ import { VeritabaniProvider } from '../providers/veritabani/veritabani';
   imports: [
     BrowserModule,
     IonicModule.forRoot(MyApp),
+    HttpModule,
+    HttpClientModule
   ],
   bootstrap: [IonicApp],
   entryComponents: [
@@ -31,6 +35,7 @@ import { VeritabaniProvider } from '../providers/veritabani/veritabani';
     SplashScreen,
     {provide: ErrorHandler, useClass: IonicErrorHandler},
     VeritabaniProvider,
+    HttpClient
   ]
 })
 export class AppModule {}

@@ -11,11 +11,11 @@
 </ion-header>
 
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
-
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
-
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+ <ion-card *ngFor="let med of meditasyonlar"  (click) = "goMeditasyon(med)">
+   <img src="http://mistikyol.com/mistikmobil/thumbnails/{{med.thumbnail}}" >
+   <ion-card-content>
+     <b>{{med.baslik}}</b>
+     <p class="uc-satir">{{med.aciklama}}</p>
+   </ion-card-content>
+ </ion-card>
 </ion-content>
