@@ -3,7 +3,10 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>Home</ion-title>
+    <ion-title *ngIf="sayfa; else menubaslik ">{{sayfa.title}}</ion-title>
+    <ng-template #menubaslik>
+        <ion-title>Meditasyon App</ion-title>
+    </ng-template>
   </ion-navbar>
 </ion-header>
 
