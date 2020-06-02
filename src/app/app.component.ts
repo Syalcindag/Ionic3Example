@@ -14,15 +14,19 @@ export class MyApp {
 
   rootPage: any = HomePage;
 
-  pages: Array<{title: string, component: any}>;
+  pages: Array<{title: string, component: any, category: string}>;
 
   constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
     this.pages = [
-      { title: 'Home', component: HomePage },
-      { title: 'List', component: ListPage }
+      { title: 'Son Eklenenler', component: HomePage, category: "0" },
+      { title: 'Favoriler', component: HomePage, category: "00" },
+      { title: 'İyi Bir Uyku', component: HomePage, category: "1" },
+      { title: 'Kişisel Gelişim', component: HomePage, category: "2" },
+      { title: 'Mistik İşler', component: HomePage, category: "3" },
+      { title: 'Olumlamalar', component: HomePage, category: "0" }
     ];
 
   }
@@ -39,6 +43,8 @@ export class MyApp {
   openPage(page) {
     // Reset the content nav to have just this page
     // we wouldn't want the back button to show in this scenario
-    this.nav.setRoot(page.component);
+    this.nav.setRoot(page.component, {
+        data:page
+    });
   }
 }
