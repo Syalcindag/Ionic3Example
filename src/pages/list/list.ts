@@ -6,32 +6,37 @@ import { NavController, NavParams } from 'ionic-angular';
   templateUrl: 'list.html'
 })
 export class ListPage {
-  selectedItem: any;
-  icons: string[];
-  items: Array<{title: string, note: string, icon: string}>;
+
+  meditasyon: any;
+  sure:number;
+  anlik:number;
+
+  toplamSure:string="00:00";
+  anlikSure:string="00:00";
+
+  isPlay:boolean=false;
+
+  player =new  Audio();
 
   constructor(public navCtrl: NavController, public navParams: NavParams) {
     // If we navigated to this page, we will have an item available as a nav param
-    this.selectedItem = navParams.get('item');
+    this.meditasyon = navParams.get('meditasyon');
 
-    // Let's populate this page with some filler content for funzies
-    this.icons = ['flask', 'wifi', 'beer', 'football', 'basketball', 'paper-plane',
-    'american-football', 'boat', 'bluetooth', 'build'];
+  }
 
-    this.items = [];
-    for (let i = 1; i < 11; i++) {
-      this.items.push({
-        title: 'Item ' + i,
-        note: 'This is item #' + i,
-        icon: this.icons[Math.floor(Math.random() * this.icons.length)]
-      });
+  ionViewDidLoad(){
+    this.player.src= "http://mistikyol.com/mistikmobil/audios/"+this.meditasyon.sesdosyasi;
+    console.log(this.player.src);
+  }
+
+  playPause(){
+    if(this.isPlay){
+      this.player.pause();
+      this.isPlay=false;
+    } else {
+      this.player.play();
+      this.isPlay=true;
     }
   }
 
-  itemTapped(event, item) {
-    // That's right, we're pushing to ourselves!
-    this.navCtrl.push(ListPage, {
-      item: item
-    });
-  }
 }

@@ -3,21 +3,30 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    <ion-title>List</ion-title>
+    <ion-title>{{meditasyon.baslik}}</ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content>
-  <ion-list>
-    <button ion-item *ngFor="let item of items" (click)="itemTapped($event, item)">
-      <ion-icon [name]="item.icon" item-start></ion-icon>
-      {{item.title}}
-      <div class="item-note" item-end>
-        {{item.note}}
-      </div>
+<ion-content padding class="list-page">
+  <img src="http://mistikyol.com/mistikmobil/thumbnails/{{meditasyon.thumbnail}}" alt="">
+
+  <ion-range
+    min="0" max="{{sure}}" [ngModel] ="anlikSure" color="danger">
+    <ion-icon range-left small>{{anlikSure}}</ion-icon>
+    <ion-icon range-right small>{{toplamSure}}</ion-icon>
+  </ion-range>
+
+    <button class="playButton" *ngIf="isPlay; else templateButton" ion-button (click)="playPause()" color="danger" icon-only large>
+      <ion-icon name="pause"></ion-icon>
     </button>
-  </ion-list>
-  <div *ngIf="selectedItem" padding>
-    You navigated here from <b>{{selectedItem.title}}</b>
-  </div>
+    <ng-template #templateButton>
+      <button class="playButton"  ion-button (click)="playPause()" color="danger" icon-only large>
+        <ion-icon name="play"></ion-icon>
+      </button>
+    </ng-template>
+
+  <button ion-button block ion-start="" color="danger" large>
+    <ion-icon  name="star"></ion-icon>
+      FAVORİLERE EKLE
+  </button>
 </ion-content>
